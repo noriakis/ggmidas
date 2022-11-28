@@ -1,2 +1,2 @@
 # ggmidas
-Import and plot output of MIDAS
+Import and plot output of [MIDAS](https://github.com/snayfach/MIDAS).
