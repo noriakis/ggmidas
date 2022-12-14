@@ -4,4 +4,4 @@ Title: Downstream analysis toolkit for MIDAS
 Version: 0.99.0
 Authors@R: person("Noriaki", "Sato", email = "nori@hgc.jp", role = c("cre", "aut"))
 Imports: ComplexHeatmap, GetoptLong
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.2
