@@ -10,11 +10,10 @@ Import and plot output of strain-level analysis of metagenomics from the softwar
 Check genes and snps for how many number of samples per category is profiled.  
 
 - `checkPATRIC`  (for MIDAS)
-Only for MIDAS (midas_db_v1.2), where the gene name corresponds to PATRIC accession.  
-The gene function is queried to PATRIC server, and cached for later use.  
+Only for MIDAS (midas_db_v1.2), where the gene name corresponds to PATRIC accession. The gene function for the species is queried to PATRIC server, and cached for later use. The queried gene description is returned. The duplicate entries for gene to `ec_number`, `ec_description`, `pathway_id`, `pathway_name` is deleted and ordered count table is also returned. Additionally, network representation of EC and KEGG pathway is returned in `igraph` object and `ggraph` plot.
 
 - `getGenes` (for MIDAS)
-Store gene matrix (presabs or copynum) and its heatmap, with filtering by threshold.
+Store gene matrix (presabs or copynum) and its heatmap, with filtering by threshold.  
 
 - `doAdonis`
-Recursively perform PERMANOVA between category for queried species, based on distance matrix from SNV frequency table.
+Recursively perform PERMANOVA between category for queried species, based on distance matrix from SNV frequency table.  
