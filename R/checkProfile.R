@@ -34,6 +34,10 @@ checkProfile <- function(midas_merge_dir, cl, filtNum=2) {
         qqcat("    @{nm} @{grProfile}\n")
         grBoolSn[[nm]] <- grProfile > filtNum
       }
+      if (sum(unlist(grBoolSn))==length(cl)){
+        qqcat("    @{sp} cleared filtering threshold in SNV\n")
+        clearSn <- c(clearSn, sp)
+      }
     }
     if ("genes_presabs.txt" %in% cont) {
       qqcat("  Genes\n")
@@ -45,14 +49,10 @@ checkProfile <- function(midas_merge_dir, cl, filtNum=2) {
         qqcat("    @{nm} @{grProfile}\n")
         grBoolGn[[nm]] <- grProfile > filtNum
       }
-    }
-    if (sum(unlist(grBoolSn))==length(cl)){
-      qqcat("    @{sp} cleared filtering threshold in SNV\n")
-      clearSn <- c(clearSn, sp)
-    }
-    if (sum(unlist(grBoolGn))==length(cl)){
-      qqcat("    @{sp} cleared filtering threshold in genes\n")
-      clearGn <- c(clearGn, sp)
+      if (sum(unlist(grBoolGn))==length(cl)){
+        qqcat("    @{sp} cleared filtering threshold in genes\n")
+        clearGn <- c(clearGn, sp)
+      }
     }
   }
   qqcat("Overall, @{length(clearSn)} species met criteria\n")
