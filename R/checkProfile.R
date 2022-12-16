@@ -1,4 +1,4 @@
-#' getProfile
+#' checkProfile
 #' 
 #' Assess profile for species and return filtered species 
 #' based on the number of samples for each category.
