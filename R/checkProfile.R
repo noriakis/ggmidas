@@ -8,6 +8,7 @@
 #' @param filtNum The species with number above this threshold
 #'                for each category is returned
 #' @import GetoptLong
+#' @export
 checkProfile <- function(midas_merge_dir, cl, filtNum=2) {
   clearSn <- c()
   clearGn <- c()

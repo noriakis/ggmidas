@@ -2,7 +2,7 @@
 % Please edit documentation in R/checkProfile.R
 \name{checkProfile}
 \alias{checkProfile}
-\title{getProfile}
+\title{checkProfile}
 \usage{
 checkProfile(midas_merge_dir, cl, filtNum = 2)
 }

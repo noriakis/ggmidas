@@ -11,6 +11,7 @@ setClass("midasGenes", slots=list(IDs="character",
 #' @import GetoptLong
 #' @import ComplexHeatmap
 #' @importFrom ComplexHeatmap Heatmap
+#' @export
 getGenes <- function(midas_merge_dir,
                      candidate="all",
                      pa="presabs", km=20,
