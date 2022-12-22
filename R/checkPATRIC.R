@@ -2,9 +2,9 @@
 #'
 #' Obtain gene information from PATRIC server.
 #' Input named list of genes, and returns queried results,
-#' Count for functionality after remove duplicate entries,
+#' Count for functionality after removing duplicate entries,
 #' and network representation of EC and KEGG pathway.
-#' For midas_db_v1.2 only
+#' For midas_db_v1.2 only.
 #'
 #' @param genes named list of genes
 #' @param whichToCount ec_description, ec_number, pathway_name, pathway_id

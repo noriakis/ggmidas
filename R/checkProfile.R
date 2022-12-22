@@ -2,6 +2,7 @@
 #' 
 #' Assess profile for species and return filtered species 
 #' based on the number of samples for each category.
+#' For MIDAS only.
 #'
 #' @param midas_merge_dir output directory of merge_midas.py
 #' @param cl named list of sample IDs

@@ -7,6 +7,9 @@ setClass("midasGenes", slots=list(IDs="character",
 
 #' getGenes
 #' 
+#' Obtain gene matrix from midas merge directory from MIDAS.
+#' Additionally, heatmap can be stored with clustering information.
+#' 
 #' @param midas_merge_dir output directory of merge_midas.py
 #' @import GetoptLong
 #' @import ComplexHeatmap
@@ -16,6 +19,7 @@ getGenes <- function(midas_merge_dir,
                      candidate="all",
                      pa="presabs", km=20,
                      filUp=1,filDown=0,
+                     heatmap=FALSE,
                      seed=1) {
     set.seed(seed)
     mg <- new("midasGenes")
@@ -47,16 +51,18 @@ getGenes <- function(midas_merge_dir,
           filtDf <- df
         }
         qqcat("  Filtered gene count: @{dim(filtDf)[1]}\n")
-        mg@Mat[[sp]] <- filtDf
-        hm <- draw(Heatmap(filtDf,
-                           show_row_names = FALSE,
-                           name=pa,
-                           row_km = km))
-        mg@Heatmap[[sp]] <- hm
-        dend <- row_dend(hm)
-        rowCl <- row_order(hm)
-        mg@Cluster[[sp]] <- sapply(rowCl,
-                                   function(x) row.names(filtDf)[x])
+        if (heatmap){
+          mg@Mat[[sp]] <- filtDf
+          hm <- draw(Heatmap(filtDf,
+                             show_row_names = FALSE,
+                             name=pa,
+                             row_km = km))
+          mg@Heatmap[[sp]] <- hm
+          dend <- row_dend(hm)
+          rowCl <- row_order(hm)
+          mg@Cluster[[sp]] <- sapply(rowCl,
+                                     function(x) row.names(filtDf)[x])
+        }
     }
     mg
 }
