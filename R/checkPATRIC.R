@@ -14,7 +14,7 @@
 #' @param rel use relative frequency
 #' @param lyt ggraph layout (default: nicely)
 #' @param nodeSize 'count' or 'degree'
-#' @import igraph ggraph BiocFileCache RCurl
+#' @import igraph ggraph BiocFileCache RCurl ggplot2
 #' @export
 checkPATRIC <- function(genes,
                         whichToCount="ec_description",
@@ -31,9 +31,9 @@ checkPATRIC <- function(genes,
   annotDf <- list()
   
   bfc <- BiocFileCache()
-  
+  qqcat("Obtaining annotations of @{length(patricIDs)} genomes\n")
   for (i in patricIDs){
-    qqcat("Obtaining information on @{i}\n")
+    qqcat("  Obtaining information on @{i}\n")
     url <- paste0("ftp://ftp.patricbrc.org/genomes/",i,"/",i,".PATRIC.pathway.tab")
     path <- bfcrpath(bfc, url)
     tmp <- data.table::fread(path)
