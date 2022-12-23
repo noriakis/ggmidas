@@ -55,13 +55,13 @@ doAdonisMIDAS2 <- function(midas_merge_dir,
       }
     }
     if (is.null(formula)){
-        formula <- as.formula("d ~ gr")
+        formulaPass <- as.formula("d ~ gr")
         pr <- TRUE
     } else {
-        formula <- as.formula(formula)
+        formulaPass <- as.formula(formula)
         pr <- FALSE
     }
-    adores <- adonis2(formula, ...)
+    adores <- adonis2(formulaPass, ...)
     if (pr) {
         pr <- adores$`Pr(>F)`
         pr <- pr[!is.na(pr)]
