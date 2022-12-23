@@ -11,6 +11,7 @@ getGenes(
   km = 20,
   filUp = 1,
   filDown = 0,
+  heatmap = FALSE,
   seed = 1
 )
 }
@@ -18,5 +19,6 @@ getGenes(
 \item{midas_merge_dir}{output directory of merge_midas.py}
 }
 \description{
-getGenes
+Obtain gene matrix from midas merge directory from MIDAS.
+Additionally, heatmap can be stored with clustering information.
 }
