@@ -34,7 +34,12 @@ getGenes <- function(midas_merge_dir,
     mg@IDs <- specNames
     mg@filterUp <- filUp
     mg@filterDown <- filDown
-    for (sp in specNames) {
+    if (candidate=="all") {
+      candSps <- specNames
+    } else {
+      candSps <- candidate
+    }
+    for (sp in candSps) {
         qqcat("@{sp}\n")
         df <- read.table(paste0(midas_merge_dir,"/",sp,"/genes_",pa,".txt"), sep="\t",
                          row.names=1, header=1)
@@ -54,6 +59,7 @@ getGenes <- function(midas_merge_dir,
         qqcat("  Filtered gene count: @{dim(filtDf)[1]}\n")
         mg@Mat[[sp]] <- filtDf
         if (heatmap){
+          qqcat("  Drawing heatmap\n")
           hm <- draw(Heatmap(filtDf,
                              show_row_names = FALSE,
                              name=pa,
