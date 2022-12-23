@@ -48,11 +48,12 @@ getGenes <- function(midas_merge_dir,
           absFil <- apply(df, 1, sum)<=dim(df)[2]*filDown
           filtDf <- df[!(presFil | absFil),]
         } else {
+          qqcat("  For copy number, no filters were applied\n")
           filtDf <- df
         }
         qqcat("  Filtered gene count: @{dim(filtDf)[1]}\n")
+        mg@Mat[[sp]] <- filtDf
         if (heatmap){
-          mg@Mat[[sp]] <- filtDf
           hm <- draw(Heatmap(filtDf,
                              show_row_names = FALSE,
                              name=pa,
