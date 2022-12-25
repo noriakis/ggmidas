@@ -21,8 +21,10 @@ checkProfile <- function(midas_merge_dir, cl, filtNum=2) {
       specNames <- c(specNames, d)
     }
   }
-  
+  freqtblSn <- c()
+  freqtblGn <- c()
   for (sp in specNames){
+    pnum <- c(sp)
     qqcat("@{sp}\n")
     qqcat("  Snps\n")
     cont <- list.files(paste0(midas_merge_dir,"/",sp))
@@ -34,12 +36,16 @@ checkProfile <- function(midas_merge_dir, cl, filtNum=2) {
         grProfile <- length(intersect(cl[[nm]],colnames(snps)))
         qqcat("    @{nm} @{grProfile}\n")
         grBoolSn[[nm]] <- grProfile > filtNum
+        pnum <- c(pnum, grProfile)
       }
       if (sum(unlist(grBoolSn))==length(cl)){
         qqcat("    @{sp} cleared filtering threshold in SNV\n")
         clearSn <- c(clearSn, sp)
       }
+      freqtblSn <- rbind(freqtblSn, pnum)
     }
+
+    pnum <- c(sp)
     if ("genes_presabs.txt" %in% cont) {
       qqcat("  Genes\n")
       genes <- read.table(paste0(midas_merge_dir,"/",sp,"/genes_presabs.txt"),
@@ -49,14 +55,23 @@ checkProfile <- function(midas_merge_dir, cl, filtNum=2) {
         grProfile <- length(intersect(cl[[nm]],colnames(genes)))
         qqcat("    @{nm} @{grProfile}\n")
         grBoolGn[[nm]] <- grProfile > filtNum
+        pnum <- c(pnum, grProfile)
       }
       if (sum(unlist(grBoolGn))==length(cl)){
         qqcat("    @{sp} cleared filtering threshold in genes\n")
         clearGn <- c(clearGn, sp)
       }
+      freqtblGn <- rbind(freqtblGn, pnum)
     }
   }
+  freqtblSn <- data.frame(freqtblSn)
+  freqtblGn <- data.frame(freqtblGn)
+  colnames(freqtblSn) <- c("species",names(cl))
+  colnames(freqtblGn) <- c("species",names(cl))
+  row.names(freqtblSn) <- seq_len(nrow(freqtblSn))
+  row.names(freqtblGn) <- seq_len(nrow(freqtblGn))
   qqcat("Overall, @{length(clearSn)} species met criteria\n")
   qqcat("Overall, @{length(clearGn)} species met criteria\n")
-  return(list(clearSnps=clearSn, clearGenes=clearGn))
+  return(list(clearSnps=clearSn,clearGenes=clearGn,
+    freqTblSn=freqtblSn, freqTblGn=freqtblGn))
 }
