@@ -1,3 +1,6 @@
+# DEPRECATED
+Please use [stana](https://github.com/noriakis/stana)
+
 # ggmidas
 Import and plot output of strain-level analysis of metagenomics from the software like [MIDAS](https://github.com/snayfach/MIDAS), [MIDAS2](https://github.com/czbiohub/MIDAS2), metaSNV v1 and metaSNV v2. Will grow into the complete package.
 
